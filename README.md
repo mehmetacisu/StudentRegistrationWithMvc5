@@ -23,9 +23,13 @@ Simple mvc crud operations with mvc 5
 <h6>Student Exam CRUD Page</h6>
 <img src="https://i.hizliresim.com/jile7r7.png" alt="Exam CRUD Page"/>
 <br/>
-<h6>Lessons CRUD Page</h6>
-<img src="https://i.hizliresim.com/kdo2k24.png" alt="Company Update Profile"/>
+<h6>Student Update Page With Dropdown</h6>
+<img src="https://i.hizliresim.com/ray1nki.png" alt="Lessons CRUD Page"/>
 <br/>
+<h6>Lessons CRUD Page</h6>
+<img src="https://i.hizliresim.com/g1c7t48.png" alt="Lessons CRUD Page"/>
+<br/>
+
 
 
 
