@@ -1,0 +1,36 @@
+﻿@model OgrenciNotMvc.Models.EntityFramework.TblOgrenci
+@{
+    ViewBag.Title = "OgrenciGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Guncelle", "Ogrenci", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.Id)
+    <div class="form-group">
+        @Html.LabelFor(x => x.Ad)
+        @Html.TextBoxFor(x => x.Ad, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Soyad)
+        @Html.TextBoxFor(x => x.Soyad, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Fotograf)
+        @Html.TextBoxFor(x => x.Fotograf, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Kulup)
+        @Html.DropDownListFor(x => x.TblKulup.Id, (List<SelectListItem>)ViewBag.kulup, new { @class = "form-control" })
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Cinsiyet)
+        @Html.TextBoxFor(x => x.Cinsiyet, new { @class = "form-control" })
+    </div>
+    <div>
+        <button class="btn btn-info">Güncelle</button>
+    </div>
+}
+
+

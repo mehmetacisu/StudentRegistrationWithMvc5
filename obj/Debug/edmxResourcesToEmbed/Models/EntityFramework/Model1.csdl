@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MvcOkulModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TblDersler">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TblNot" Relationship="Self.FK_TblNot_TblDersler" FromRole="TblDersler" ToRole="TblNot" />
+  </EntityType>
+  <EntityType Name="TblKulup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Kontenjan" Type="Int16" />
+    <NavigationProperty Name="TblOgrenci" Relationship="Self.FK_TblOgrenci_TblKulup" FromRole="TblKulup" ToRole="TblOgrenci" />
+  </EntityType>
+  <EntityType Name="TblNot">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DersId" Type="Int32" />
+    <Property Name="OgrenciId" Type="Int32" />
+    <Property Name="Vize" Type="Byte" />
+    <Property Name="Final" Type="Byte" />
+    <Property Name="But" Type="Byte" />
+    <Property Name="Proje" Type="Byte" />
+    <Property Name="Ortalama" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Durum" Type="Boolean" />
+    <NavigationProperty Name="TblDersler" Relationship="Self.FK_TblNot_TblDersler" FromRole="TblNot" ToRole="TblDersler" />
+    <NavigationProperty Name="TblOgrenci" Relationship="Self.FK_TblNot_TblOgrenci" FromRole="TblNot" ToRole="TblOgrenci" />
+  </EntityType>
+  <EntityType Name="TblOgrenci">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Fotograf" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Cinsiyet" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Kulup" Type="Byte" />
+    <NavigationProperty Name="TblKulup" Relationship="Self.FK_TblOgrenci_TblKulup" FromRole="TblOgrenci" ToRole="TblKulup" />
+    <NavigationProperty Name="TblNot" Relationship="Self.FK_TblNot_TblOgrenci" FromRole="TblOgrenci" ToRole="TblNot" />
+  </EntityType>
+  <Association Name="FK_TblNot_TblDersler">
+    <End Role="TblDersler" Type="Self.TblDersler" Multiplicity="0..1" />
+    <End Role="TblNot" Type="Self.TblNot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblDersler">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TblNot">
+        <PropertyRef Name="DersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblOgrenci_TblKulup">
+    <End Role="TblKulup" Type="Self.TblKulup" Multiplicity="0..1" />
+    <End Role="TblOgrenci" Type="Self.TblOgrenci" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblKulup">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TblOgrenci">
+        <PropertyRef Name="Kulup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblNot_TblOgrenci">
+    <End Role="TblOgrenci" Type="Self.TblOgrenci" Multiplicity="0..1" />
+    <End Role="TblNot" Type="Self.TblNot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblOgrenci">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TblNot">
+        <PropertyRef Name="OgrenciId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MvcOkulEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TblDersler" EntityType="Self.TblDersler" />
+    <EntitySet Name="TblKulup" EntityType="Self.TblKulup" />
+    <EntitySet Name="TblNot" EntityType="Self.TblNot" />
+    <EntitySet Name="TblOgrenci" EntityType="Self.TblOgrenci" />
+    <AssociationSet Name="FK_TblNot_TblDersler" Association="Self.FK_TblNot_TblDersler">
+      <End Role="TblDersler" EntitySet="TblDersler" />
+      <End Role="TblNot" EntitySet="TblNot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblOgrenci_TblKulup" Association="Self.FK_TblOgrenci_TblKulup">
+      <End Role="TblKulup" EntitySet="TblKulup" />
+      <End Role="TblOgrenci" EntitySet="TblOgrenci" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblNot_TblOgrenci" Association="Self.FK_TblNot_TblOgrenci">
+      <End Role="TblOgrenci" EntitySet="TblOgrenci" />
+      <End Role="TblNot" EntitySet="TblNot" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

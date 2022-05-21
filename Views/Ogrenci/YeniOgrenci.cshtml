@@ -1,0 +1,47 @@
+﻿@model OgrenciNotMvc.Models.EntityFramework.TblOgrenci
+
+@{
+    ViewBag.Title = "YeniOgrenci";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" class="form-group">
+    <div>
+        <label>Öğrenci Adı</label>
+        <input type="text" class="form-control" name="Ad" />
+    </div>
+    <div>
+        <label>Öğrenci Soyadı</label>
+        <input type="text" class="form-control" name="Soyad" />
+    </div>
+    <div>
+        <label>Öğrenci Fotoğraf</label>
+        <input type="text" class="form-control" name="Fotograf" />
+    </div>
+    <div>
+        <label>Öğrenci Cinsiyeti</label>
+        <input type="text" class="form-control" name="Cinsiyet" />
+    </div>
+    <div>
+        <label>Öğrenci Kulüp</label>
+        @Html.DropDownListFor(x=>x.TblKulup.Id,(List<SelectListItem>)ViewBag.kulup, new {@class="form-control" })
+    </div>
+
+    <button class="btn btn-success">Öğrenci Ekle</button>
+</form>
+
+@*<div>
+        <label>Öğrenci Kulüp</label>
+        @Html.DropDownList("Kulüpler",
+       new[]
+       {
+           new SelectListItem() {Value="1",Text="Ankara"},
+           new SelectListItem() {Value="2",Text="İstanbul"},
+           new SelectListItem() {Value="3",Text="İzmir"}
+       }, "Kulüp Seçiniz..", new { @class = "form-control" })
+    </div>
+    <div>
+
+        @Html.DropDownList("Dersler", null, "Ders Seçiniz...", new { @class = "form-control" })
+
+    </div>*@
